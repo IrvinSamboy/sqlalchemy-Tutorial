@@ -13,7 +13,10 @@ class Roles(Base):
 class User(Base):
     __tablename__ = "user"
 
-    idUser: Mapped[id] = mapped_column(primary_key=True, autoincrement=True)
+    idUser: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     firstName: Mapped[str] = mapped_column(String(100), nullable=False)
     lastName: Mapped[str] = mapped_column(String(100), nullable=False)
     role: Mapped[int] = mapped_column(ForeignKey("roles.idRole"))
+
+engine = create_engine("sqLite://mydb.db", echo=True)
+Base.metadata.create_all(engine)
