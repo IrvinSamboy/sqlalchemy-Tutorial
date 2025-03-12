@@ -12,7 +12,7 @@ def createRol(name: str, db: Session):
     return rol
 
 def updateRol(rol: roles_schemas.roleBase, name: str, db: Session):
-    rol.name = name
+    rol.roleName = name
     db.commit
     return rol
 
