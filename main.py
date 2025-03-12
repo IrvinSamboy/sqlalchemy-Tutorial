@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, column, String
+from sqlalchemy import create_engine, column, String, ForeignKey
 from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column, relationship
 
 class Base(DeclarativeBase):
@@ -10,5 +10,10 @@ class Roles(Base):
     idRole: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     roleName: Mapped[str] = mapped_column(String(100), nullable=False)
 
-    
+class User(Base):
+    __tablename__ = "user"
 
+    idUser: Mapped[id] = mapped_column(primary_key=True, autoincrement=True)
+    firstName: Mapped[str] = mapped_column(String(100), nullable=False)
+    lastName: Mapped[str] = mapped_column(String(100), nullable=False)
+    role: Mapped[int] = mapped_column(ForeignKey("roles.idRole"))
